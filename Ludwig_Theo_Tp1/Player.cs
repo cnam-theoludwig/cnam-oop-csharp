@@ -10,12 +10,14 @@ public class Player
             return $"{this.FirstName} {this.LastName}";
         }
     }
+    public Spaceship SpaceshipDefault { get; set; }
 
-    public Player(string firstName, string lastName, string alias)
+    public Player(string firstName, string lastName, string alias, Spaceship spaceshipDefault)
     {
         this.FirstName = Player.FormatName(firstName);
         this.LastName = Player.FormatName(lastName);
         this.Alias = alias;
+        this.SpaceshipDefault = spaceshipDefault;
     }
 
     private static string FormatName(string name)

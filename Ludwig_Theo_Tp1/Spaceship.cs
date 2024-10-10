@@ -60,6 +60,15 @@ public class Spaceship
         }
     }
 
+    public void ViewShip()
+    {
+        Console.WriteLine($"  Max Structure: {this.MaxStructure}");
+        Console.WriteLine($"  Current Structure: {this.CurrentStructure}");
+        Console.WriteLine($"  Max Shield: {this.MaxShield}");
+        Console.WriteLine($"  Current Shield: {this.CurrentShield}");
+        Console.WriteLine($"  Is Destroyed: {this.IsDestroyed}");
+    }
+
     public double AverageDamages()
     {
         if (this.weapons.Count == 0)
