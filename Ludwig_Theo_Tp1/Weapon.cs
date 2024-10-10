@@ -7,8 +7,16 @@ public enum EWeaponType
 
 public class Weapon
 {
-    public string Name { get; set; } = string.Empty;
-    public int MinDamage { get; set; }
-    public int MaxDamage { get; set; }
-    public EWeaponType WeaponType { get; set; }
+    public string Name { get; }
+    public int MinDamage { get; }
+    public int MaxDamage { get; }
+    public EWeaponType WeaponType { get; }
+
+    public Weapon(string name, int minDamage, int maxDamage, EWeaponType weaponType)
+    {
+        this.Name = name;
+        this.MinDamage = minDamage;
+        this.MaxDamage = maxDamage;
+        this.WeaponType = weaponType;
+    }
 }
