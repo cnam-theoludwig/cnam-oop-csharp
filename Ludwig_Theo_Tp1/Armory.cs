@@ -1,36 +1,45 @@
 public class Armory
 {
-    private List<Weapon> weapons;
+    public List<Weapon> Weapons { get; private set; }
 
     public Armory()
     {
-        this.weapons = new List<Weapon>();
+        this.Weapons = new List<Weapon>();
         this.Init();
     }
 
     private void Init()
     {
-        this.weapons.Add(new Weapon("Laser Beam", 10, 20, EWeaponType.Direct));
-        this.weapons.Add(new Weapon("Missile", 30, 50, EWeaponType.Explosive));
-        this.weapons.Add(new Weapon("Guided Rocket", 25, 40, EWeaponType.Guided));
+        this.Weapons.Add(new Weapon("Laser Beam", 10, 20, EWeaponType.Direct));
+        this.Weapons.Add(new Weapon("Missile", 30, 50, EWeaponType.Explosive));
+        this.Weapons.Add(new Weapon("Guided Rocket", 25, 40, EWeaponType.Guided));
     }
 
     public void ViewArmory()
     {
         Console.WriteLine("Available weapons in the armory:");
-        foreach (Weapon weapon in this.weapons)
+        foreach (Weapon weapon in this.Weapons)
         {
             Console.WriteLine(weapon);
         }
-    }
-
-    public List<Weapon> GetWeapons()
-    {
-        return this.weapons;
+        Console.WriteLine();
     }
 
     public void AddWeapon(Weapon weapon)
     {
-        this.weapons.Add(weapon);
+        this.Weapons.Add(weapon);
+    }
+
+    public Weapon GetRandomWeapon()
+    {
+        if (this.Weapons.Count <= 0)
+        {
+            throw new ArmoryException(ArmoryExceptionType.NoWeaponsAvailable);
+        }
+        Random random = new Random();
+        int index = random.Next(0, this.Weapons.Count);
+        Weapon weapon = this.Weapons[index];
+        this.Weapons.RemoveAt(index);
+        return weapon;
     }
 }

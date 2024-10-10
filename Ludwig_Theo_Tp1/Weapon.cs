@@ -20,8 +20,14 @@ public class Weapon
         this.WeaponType = weaponType;
     }
 
+    public int DealDamage()
+    {
+        Random random = new Random();
+        return random.Next(this.MinDamage, this.MaxDamage + 1);
+    }
+
     public override string ToString()
     {
-        return $"{this.Name} (Type: {this.WeaponType}, Damage: {this.MinDamage}-{this.MaxDamage})";
+        return $"{this.Name} (Type: {this.WeaponType}, Damage: [{this.MinDamage}, {this.MaxDamage}]";
     }
 }

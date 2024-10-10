@@ -18,6 +18,11 @@ public class Spaceship
         }
     }
 
+    public static Spaceship Default()
+    {
+        return new Spaceship(100, 50);
+    }
+
     public Spaceship(int maxStructure, int maxShield)
     {
         this.MaxStructure = maxStructure;
@@ -31,7 +36,7 @@ public class Spaceship
     {
         if (this.weapons.Count >= WEAPONS_CAPACITY)
         {
-            throw new InvalidOperationException($"Maximum capacity of weapons reached: {WEAPONS_CAPACITY}");
+            throw new ArmoryException(ArmoryExceptionType.MaximumCapacityReached);
         }
         this.weapons.Add(weapon);
     }
@@ -50,13 +55,13 @@ public class Spaceship
     {
         if (this.weapons.Count == 0)
         {
-            Console.WriteLine("No weapons on this spaceship.");
+            Console.WriteLine("  No weapons on this spaceship.");
             return;
         }
-        Console.WriteLine("Weapons on this spaceship:");
+        Console.WriteLine("  Weapons on this spaceship:");
         foreach (Weapon weapon in this.weapons)
         {
-            Console.WriteLine(weapon);
+            Console.WriteLine("    " + weapon);
         }
     }
 
@@ -67,6 +72,8 @@ public class Spaceship
         Console.WriteLine($"  Max Shield: {this.MaxShield}");
         Console.WriteLine($"  Current Shield: {this.CurrentShield}");
         Console.WriteLine($"  Is Destroyed: {this.IsDestroyed}");
+        Console.WriteLine($"  Average Damages: {this.AverageDamages()}");
+        this.ViewWeapons();
     }
 
     public double AverageDamages()
@@ -83,5 +90,29 @@ public class Spaceship
             totalMaxDamage += weapon.MaxDamage;
         }
         return (totalMinDamage + totalMaxDamage) / (2 * this.weapons.Count);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (damage <= this.CurrentShield)
+        {
+            this.CurrentShield -= damage;
+        }
+        else
+        {
+            int remainingDamage = damage - this.CurrentShield;
+            this.CurrentShield = 0;
+            this.CurrentStructure = Math.Max(0, this.CurrentStructure - remainingDamage);
+        }
+    }
+
+    public void RepairStructure(int repairPoints)
+    {
+        this.CurrentStructure = Math.Min(this.MaxStructure, this.CurrentStructure + repairPoints);
+    }
+
+    public void RepairShield(int repairPoints)
+    {
+        this.CurrentShield = Math.Min(this.MaxShield, this.CurrentShield + repairPoints);
     }
 }

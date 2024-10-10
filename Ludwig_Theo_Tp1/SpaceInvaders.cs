@@ -12,9 +12,9 @@ public class SpaceInvaders
 
     private void Init()
     {
-        this.players.Add(new Player("Emmet", "Brown", "EB", new Spaceship(100, 50)));
-        this.players.Add(new Player("Jeanne", "Calment", "JC", new Spaceship(80, 40)));
-        this.players.Add(new Player("Théo", "Ludwig", "Divlo", new Spaceship(120, 60)));
+        this.players.Add(new Player("Emmet", "Brown", "EB"));
+        this.players.Add(new Player("Jeanne", "Calment", "JC"));
+        this.players.Add(new Player("Théo", "Ludwig", "Divlo"));
     }
 
     public void ShowPlayerShips()
@@ -23,16 +23,43 @@ public class SpaceInvaders
         {
             Console.WriteLine(player);
             Console.WriteLine("Spaceship:");
-            player.SpaceshipDefault.ViewShip();
+            player.Spaceship.ViewShip();
             Console.WriteLine();
         }
+    }
+
+    private Weapon AddWeaponToPlayer(Player player)
+    {
+        Weapon weapon = this.armory.GetRandomWeapon();
+        player.Spaceship.AddWeapon(weapon);
+        return weapon;
+    }
+
+    private void ViewGame()
+    {
+        Console.WriteLine();
+        Console.WriteLine("Space Invaders");
+        Console.WriteLine("---------------");
+        this.armory.ViewArmory();
+        this.ShowPlayerShips();
+        Console.WriteLine("---------------");
     }
 
     public static void Main(string[] args)
     {
         SpaceInvaders game = new SpaceInvaders();
-        game.armory.ViewArmory();
-        Console.WriteLine();
-        game.ShowPlayerShips();
+        game.ViewGame();
+
+        Player player = game.players[0];
+        Weapon weapon = game.AddWeaponToPlayer(player);
+        game.ViewGame();
+
+        Player player2 = game.players[1];
+        while (!player2.Spaceship.IsDestroyed)
+        {
+
+            player2.Spaceship.TakeDamage(weapon.DealDamage());
+            game.ViewGame();
+        }
     }
 }
