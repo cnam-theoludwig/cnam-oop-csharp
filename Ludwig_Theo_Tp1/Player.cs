@@ -44,8 +44,7 @@ public class Player
 
     public bool Equals(Player other)
     {
-        return other != null &&
-               this.Alias == other.Alias;
+        return other != null && this.Alias == other.Alias;
     }
 
     public override int GetHashCode()
