@@ -1,9 +1,5 @@
 ﻿namespace TP0;
 
-using System;
-using System.Threading;
-using System.Linq;
-
 public class Program
 {
     const int HAIR_MINIMUM_COUNT = 100_000;
