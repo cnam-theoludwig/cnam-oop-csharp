@@ -1,3 +1,5 @@
+namespace Ludwig_Theo_Tp1;
+
 public enum ArmoryExceptionType
 {
     MaximumCapacityReached,

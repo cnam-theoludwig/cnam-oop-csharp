@@ -1,3 +1,5 @@
+namespace Ludwig_Theo_Tp1;
+
 public class Spaceship
 {
     public int MaxStructure { get; }
@@ -8,7 +10,7 @@ public class Spaceship
 
     private static readonly int WEAPONS_CAPACITY = 3;
 
-    private List<Weapon> weapons;
+    private readonly List<Weapon> _weapons;
 
     public bool IsDestroyed
     {
@@ -29,37 +31,37 @@ public class Spaceship
         this.MaxShield = maxShield;
         this.CurrentStructure = maxStructure;
         this.CurrentShield = maxShield;
-        this.weapons = new List<Weapon>();
+        this._weapons = [];
     }
 
     public void AddWeapon(Weapon weapon)
     {
-        if (this.weapons.Count >= WEAPONS_CAPACITY)
+        if (this._weapons.Count >= WEAPONS_CAPACITY)
         {
             throw new ArmoryException(ArmoryExceptionType.MaximumCapacityReached);
         }
-        this.weapons.Add(weapon);
+        this._weapons.Add(weapon);
     }
 
     public void RemoveWeapon(Weapon weapon)
     {
-        this.weapons.Remove(weapon);
+        this._weapons.Remove(weapon);
     }
 
     public void ClearWeapons()
     {
-        this.weapons.Clear();
+        this._weapons.Clear();
     }
 
     public void ViewWeapons()
     {
-        if (this.weapons.Count == 0)
+        if (this._weapons.Count == 0)
         {
             Console.WriteLine("  No weapons on this spaceship.");
             return;
         }
         Console.WriteLine("  Weapons on this spaceship:");
-        foreach (Weapon weapon in this.weapons)
+        foreach (Weapon weapon in this._weapons)
         {
             Console.WriteLine("    " + weapon);
         }
@@ -78,18 +80,18 @@ public class Spaceship
 
     public double AverageDamages()
     {
-        if (this.weapons.Count == 0)
+        if (this._weapons.Count == 0)
         {
             return 0.0;
         }
         double totalMinDamage = 0;
         double totalMaxDamage = 0;
-        foreach (Weapon weapon in this.weapons)
+        foreach (Weapon weapon in this._weapons)
         {
             totalMinDamage += weapon.MinDamage;
             totalMaxDamage += weapon.MaxDamage;
         }
-        return (totalMinDamage + totalMaxDamage) / (2 * this.weapons.Count);
+        return (totalMinDamage + totalMaxDamage) / (2 * this._weapons.Count);
     }
 
     public void TakeDamage(int damage)

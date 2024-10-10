@@ -1,3 +1,5 @@
+namespace Ludwig_Theo_Tp1;
+
 public enum EWeaponType
 {
     Direct,
@@ -22,7 +24,7 @@ public class Weapon
 
     public int DealDamage()
     {
-        Random random = new Random();
+        Random random = new();
         return random.Next(this.MinDamage, this.MaxDamage + 1);
     }
 

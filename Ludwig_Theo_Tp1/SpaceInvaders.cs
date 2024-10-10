@@ -1,25 +1,27 @@
+namespace Ludwig_Theo_Tp1;
+
 public class SpaceInvaders
 {
-    private List<Player> players;
-    private Armory armory;
+    private readonly List<Player> _players;
+    private readonly Armory _armory;
 
     public SpaceInvaders()
     {
-        this.players = new List<Player>();
-        this.armory = new Armory();
+        this._players = [];
+        this._armory = new();
         this.Init();
     }
 
     private void Init()
     {
-        this.players.Add(new Player("Emmet", "Brown", "EB"));
-        this.players.Add(new Player("Jeanne", "Calment", "JC"));
-        this.players.Add(new Player("Théo", "Ludwig", "Divlo"));
+        this._players.Add(new Player("Emmet", "Brown", "EB"));
+        this._players.Add(new Player("Jeanne", "Calment", "JC"));
+        this._players.Add(new Player("Théo", "Ludwig", "Divlo"));
     }
 
     public void ShowPlayerShips()
     {
-        foreach (Player player in players)
+        foreach (Player player in this._players)
         {
             Console.WriteLine(player);
             Console.WriteLine("Spaceship:");
@@ -30,7 +32,7 @@ public class SpaceInvaders
 
     private Weapon AddWeaponToPlayer(Player player)
     {
-        Weapon weapon = this.armory.GetRandomWeapon();
+        Weapon weapon = this._armory.GetRandomWeapon();
         player.Spaceship.AddWeapon(weapon);
         return weapon;
     }
@@ -40,21 +42,21 @@ public class SpaceInvaders
         Console.WriteLine();
         Console.WriteLine("Space Invaders");
         Console.WriteLine("---------------");
-        this.armory.ViewArmory();
+        this._armory.ViewArmory();
         this.ShowPlayerShips();
         Console.WriteLine("---------------");
     }
 
-    public static void Main(string[] args)
+    public static void Main()
     {
-        SpaceInvaders game = new SpaceInvaders();
+        SpaceInvaders game = new();
         game.ViewGame();
 
-        Player player = game.players[0];
+        Player player = game._players[0];
         Weapon weapon = game.AddWeaponToPlayer(player);
         game.ViewGame();
 
-        Player player2 = game.players[1];
+        Player player2 = game._players[1];
         while (!player2.Spaceship.IsDestroyed)
         {
 

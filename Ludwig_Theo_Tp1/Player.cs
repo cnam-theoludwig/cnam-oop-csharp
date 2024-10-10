@@ -1,3 +1,5 @@
+namespace Ludwig_Theo_Tp1;
+
 public class Player
 {
     private string FirstName { get; }
@@ -37,17 +39,17 @@ public class Player
     public override bool Equals(object? other)
     {
         Player? otherPlayer = other as Player;
-        return otherPlayer is not null && Equals(otherPlayer);
+        return otherPlayer is not null && this.Equals(otherPlayer);
     }
 
     public bool Equals(Player other)
     {
         return other != null &&
-               Alias == other.Alias;
+               this.Alias == other.Alias;
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Alias);
+        return HashCode.Combine(this.Alias);
     }
 }

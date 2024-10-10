@@ -1,10 +1,12 @@
+namespace Ludwig_Theo_Tp1;
+
 public class Armory
 {
     public List<Weapon> Weapons { get; private set; }
 
     public Armory()
     {
-        this.Weapons = new List<Weapon>();
+        this.Weapons = [];
         this.Init();
     }
 
@@ -36,7 +38,7 @@ public class Armory
         {
             throw new ArmoryException(ArmoryExceptionType.NoWeaponsAvailable);
         }
-        Random random = new Random();
+        Random random = new();
         int index = random.Next(0, this.Weapons.Count);
         Weapon weapon = this.Weapons[index];
         this.Weapons.RemoveAt(index);
