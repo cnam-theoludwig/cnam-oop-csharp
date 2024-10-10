@@ -19,4 +19,9 @@ public class Weapon
         this.MaxDamage = maxDamage;
         this.WeaponType = weaponType;
     }
+
+    public override string ToString()
+    {
+        return $"{this.Name} (Type: {this.WeaponType}, Damage: {this.MinDamage}-{this.MaxDamage})";
+    }
 }

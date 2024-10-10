@@ -18,9 +18,9 @@ public class Armory
     public void ViewArmory()
     {
         Console.WriteLine("Available weapons in the armory:");
-        foreach (var weapon in this.weapons)
+        foreach (Weapon weapon in this.weapons)
         {
-            Console.WriteLine($"- {weapon.Name} (Type: {weapon.WeaponType}, Damage: {weapon.MinDamage}-{weapon.MaxDamage})");
+            Console.WriteLine(weapon);
         }
     }
 

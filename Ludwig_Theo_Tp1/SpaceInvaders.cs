@@ -20,7 +20,7 @@ public class SpaceInvaders
         SpaceInvaders game = new SpaceInvaders();
         foreach (Player player in game.players)
         {
-            Console.WriteLine(player.ToString());
+            Console.WriteLine(player);
         }
     }
 }
