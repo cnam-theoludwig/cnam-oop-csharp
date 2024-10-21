@@ -5,6 +5,7 @@ public class SpaceInvaders
     private readonly List<Player> _players;
     private readonly List<Spaceship> _enemies;
     private readonly Armory _armory;
+    private readonly Random _random = new();
 
     public SpaceInvaders()
     {
@@ -77,7 +78,8 @@ public class SpaceInvaders
         {
             if (!spaceship.IsDestroyed)
             {
-                spaceship.RepairShield(2);
+                double point = this._random.NextDouble() * 2.0;
+                spaceship.RepairShield(point);
                 Console.WriteLine($"{spaceship.Name} regains shield. Current shield: {spaceship.Shield}/{spaceship.MaxShield}");
             }
         }
@@ -92,11 +94,11 @@ public class SpaceInvaders
         Weapon weapon = game.AddWeaponToPlayer(player);
         game.ViewGame();
 
-        game.PlayRound();
-        game.ViewGame();
-        // while (!player.BattleShip.IsDestroyed && game._enemies.Any(e => !e.IsDestroyed))
-        // {
-        // }
+        while (!player.BattleShip.IsDestroyed && game._enemies.Any(e => !e.IsDestroyed))
+        {
+            game.PlayRound();
+            game.ViewGame();
+        }
 
         Console.WriteLine("Game Over!");
     }

@@ -2,7 +2,7 @@ namespace Ludwig_Theo_Tp2;
 
 public class Tardis : Spaceship, IAbility
 {
-    private static readonly Random random = new Random();
+    private readonly Random _random = new();
 
     public Tardis() : base(1, 0, 0, false)
     {
@@ -16,8 +16,8 @@ public class Tardis : Spaceship, IAbility
 
     public void UseAbility(List<Spaceship> spaceships)
     {
-        int targetIndex = random.Next(spaceships.Count);
-        int newPosition = random.Next(spaceships.Count);
+        int targetIndex = this._random.Next(spaceships.Count);
+        int newPosition = this._random.Next(spaceships.Count);
 
         Spaceship target = spaceships[targetIndex];
         spaceships.RemoveAt(targetIndex);
