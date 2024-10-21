@@ -109,7 +109,7 @@ Rocinante est toujours dans les bons coups. Prêt à tout pour se faire de la ma
 
 ### 2.d. ViperMKII
 
-Il faut bien pouvoir se défendre face à tous ces ennemis plus fourbes les uns que les autres ! Voici le vaisseau du joueur … et oui, c'est une antiquité.
+Il faut bien pouvoir se défendre face à tous ces ennemis plus fourbes les uns que les autres ! Voici le vaisseau du joueur ... et oui, c'est une antiquité.
 
 1. Un vaisseau ViperMKII possède les caractéristiques suivantes :
 
@@ -155,7 +155,7 @@ Cela se traduit par : Le F-18 explose si il se trouve en position 0 ou 2.
 
 ## 4. Mettre à jour la classe `SpaceInvaders`
 
-Bien, nous avons tuné nos armes, créé notre vaisseau allié, nos ennemis … Il ne reste plus qu'à déclencher une magnifique guerre des étoiles !
+Bien, nous avons tuné nos armes, créé notre vaisseau allié, nos ennemis ... Il ne reste plus qu'à déclencher une magnifique guerre des étoiles !
 
 Je sais pas vous, mais moi je pense que ce sera toujours plus fun à regarder que Star Wars Episode VII. Et y aura pas Kylo Ren pour venir chialer cette fois.
 
