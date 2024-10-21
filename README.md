@@ -6,6 +6,7 @@ Code réalisé par [Théo LUDWIG](https://theoludwig.fr) dans le cadre de la for
 
 - [TP n°0](./Ludwig_Theo_Tp0)
 - [TP n°1](./Ludwig_Theo_Tp1)
+- [TP n°2](./Ludwig_Theo_Tp2)
 
 ## Prérequis
 
@@ -22,8 +23,8 @@ $ dotnet --version
 # Cloner le dépôt
 git clone git@github.com:cnam-theoludwig/cnam-oop-csharp.git
 
-# Se déplacer dans le répertoire du TP (e.g. TP0)
-cd cnam-oop-csharp/TP0
+# Se déplacer dans le répertoire du TP (e.g: `Ludwig_Theo_Tp0`)
+cd cnam-oop-csharp/Ludwig_Theo_Tp0
 
 # Éxecuter
 dotnet run

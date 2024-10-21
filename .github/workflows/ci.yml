@@ -18,7 +18,7 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        task: [Ludwig_Theo_Tp0, Ludwig_Theo_Tp1]
+        task: [Ludwig_Theo_Tp0, Ludwig_Theo_Tp1, Ludwig_Theo_Tp2]
 
     steps:
       - uses: "actions/checkout@v4.2.1"
