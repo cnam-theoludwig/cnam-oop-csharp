@@ -2,7 +2,7 @@ namespace Ludwig_Theo_Tp2;
 
 public class Tardis : Spaceship, IAbility
 {
-    private static Random random = new Random();
+    private static readonly Random random = new Random();
 
     public Tardis() : base(1, 0, 0, false)
     {

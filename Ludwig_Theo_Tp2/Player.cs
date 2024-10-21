@@ -28,7 +28,7 @@ public class Player : IPlayer
         {
             return string.Empty;
         }
-        return char.ToUpper(name[0]) + name.Substring(1).ToLower();
+        return char.ToUpper(name[0]) + name[1..].ToLower();
     }
 
     public override string ToString()
