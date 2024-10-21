@@ -139,7 +139,7 @@ La légende veut que si l'on est percuté par ce vaisseau la dernière phrase qu
    - b. Bouclier : aucun
    - c. Arme : aucune
 
-2. Un F-18 ne possède pas d'armes, mais s'il est au contact avec le vaisseau joueur, il explose et lui fait 10 points de dégâts. Exemple de liste:
+2. Un F-18 ne possède pas d'armes, mais s'il est au contact avec le vaisseau joueur, il explose et lui fait 10 points de dégâts. Exemple de liste: [Vaisseau ennemi, Vaisseau joueur, Vaisseau ennemi, Vaisseau ennemi, Vaisseau ennemi, Vaisseau ennemi]
 
 Cela se traduit par : Le F-18 explose si il se trouve en position 0 ou 2.
 
