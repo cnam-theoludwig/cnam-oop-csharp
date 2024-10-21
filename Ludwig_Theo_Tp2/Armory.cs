@@ -12,9 +12,12 @@ public class Armory
 
     private void Init()
     {
-        this.Weapons.Add(new Weapon("Laser Beam", 10, 20, EWeaponType.Direct));
-        this.Weapons.Add(new Weapon("Missile", 30, 50, EWeaponType.Explosive));
-        this.Weapons.Add(new Weapon("Guided Rocket", 25, 40, EWeaponType.Guided));
+        this.Weapons.Add(new Weapon("Laser", 2, 3, EWeaponType.Direct, 2));
+        this.Weapons.Add(new Weapon("Hammer", 1, 8, EWeaponType.Explosive, 1.5));
+        this.Weapons.Add(new Weapon("Torpille", 3, 3, EWeaponType.Guided, 2));
+        this.Weapons.Add(new Weapon("Mitrailleuse", 6, 8, EWeaponType.Direct, 1));
+        this.Weapons.Add(new Weapon("EMG", 1, 7, EWeaponType.Explosive, 1.5));
+        this.Weapons.Add(new Weapon("Missile", 4, 100, EWeaponType.Guided, 4));
     }
 
     public void ViewArmory()

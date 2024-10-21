@@ -8,7 +8,7 @@ public interface IWeapon
     double MaxDamage { get; set; }
     double AverageDamage { get; }
     double ReloadTime { get; set; }
-    double TimeBeforReload { get; set; }
-    bool IsReload { get; }
+    double TimeBeforeReload { get; set; }
+    bool IsReloading { get; }
     double Shoot();
 }
