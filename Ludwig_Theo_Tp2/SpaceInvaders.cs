@@ -59,8 +59,7 @@ public class SpaceInvaders
         Player player2 = game._players[1];
         while (!player2.Spaceship.IsDestroyed)
         {
-
-            player2.Spaceship.TakeDamage(weapon.DealDamage());
+            player2.Spaceship.ShootTarget(player.Spaceship);
             game.ViewGame();
         }
     }

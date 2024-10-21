@@ -1,120 +1,99 @@
 namespace Ludwig_Theo_Tp2;
 
-public class Spaceship
+public abstract class Spaceship : ISpaceship
 {
-    public int MaxStructure { get; }
-    public int MaxShield { get; }
+    public double MaxStructure { get; }
+    public double MaxShield { get; }
+    public double Structure { get; set; }
+    public double Shield { get; set; }
+    public bool BelongsPlayer { get; set; }
+    public List<Weapon> Weapons { get; }
+    public int MaxWeapons { get; }
 
-    public int CurrentStructure { get; set; }
-    public int CurrentShield { get; set; }
-
-    private static readonly int WEAPONS_CAPACITY = 3;
-
-    private readonly List<Weapon> _weapons;
-
-    public bool IsDestroyed
-    {
-        get
-        {
-            return this.CurrentStructure == 0;
-        }
-    }
-
-    public static Spaceship Default()
-    {
-        return new Spaceship(100, 50);
-    }
-
-    public Spaceship(int maxStructure, int maxShield)
+    public Spaceship(double maxStructure, double maxShield, int maxWeapons, bool belongsPlayer)
     {
         this.MaxStructure = maxStructure;
         this.MaxShield = maxShield;
-        this.CurrentStructure = maxStructure;
-        this.CurrentShield = maxShield;
-        this._weapons = [];
+        this.Structure = maxStructure;
+        this.Shield = maxShield;
+        this.MaxWeapons = maxWeapons;
+        this.BelongsPlayer = belongsPlayer;
+        this.Weapons = [];
+    }
+
+    public bool IsDestroyed => this.Structure == 0;
+
+    public abstract string Name { get; set; }
+
+    public abstract void ShootTarget(Spaceship target);
+
+    public virtual void TakeDamages(double damages)
+    {
+        if (this.Shield >= damages)
+        {
+            this.Shield -= damages;
+        }
+        else
+        {
+            double remainingDamage = damages - this.Shield;
+            this.Shield = 0;
+            this.Structure = Math.Max(0, this.Structure - remainingDamage);
+        }
+    }
+
+    public void ReloadWeapons()
+    {
+        foreach (Weapon weapon in this.Weapons)
+        {
+            weapon.Reload();
+        }
     }
 
     public void AddWeapon(Weapon weapon)
     {
-        if (this._weapons.Count >= WEAPONS_CAPACITY)
+        if (this.Weapons.Count < this.MaxWeapons)
         {
-            throw new ArmoryException(ArmoryExceptionType.MaximumCapacityReached);
+            this.Weapons.Add(weapon);
         }
-        this._weapons.Add(weapon);
+        else
+        {
+            Console.WriteLine("Cannot add more weapons, limit reached.");
+        }
     }
 
-    public void RemoveWeapon(Weapon weapon)
+    public void RemoveWeapon(Weapon oWeapon)
     {
-        this._weapons.Remove(weapon);
+        this.Weapons.Remove(oWeapon);
     }
 
     public void ClearWeapons()
     {
-        this._weapons.Clear();
-    }
-
-    public void ViewWeapons()
-    {
-        if (this._weapons.Count == 0)
-        {
-            Console.WriteLine("  No weapons on this spaceship.");
-            return;
-        }
-        Console.WriteLine("  Weapons on this spaceship:");
-        foreach (Weapon weapon in this._weapons)
-        {
-            Console.WriteLine("    " + weapon);
-        }
+        this.Weapons.Clear();
     }
 
     public void ViewShip()
     {
-        Console.WriteLine($"  Max Structure: {this.MaxStructure}");
-        Console.WriteLine($"  Current Structure: {this.CurrentStructure}");
-        Console.WriteLine($"  Max Shield: {this.MaxShield}");
-        Console.WriteLine($"  Current Shield: {this.CurrentShield}");
-        Console.WriteLine($"  Is Destroyed: {this.IsDestroyed}");
-        Console.WriteLine($"  Average Damages: {this.AverageDamages()}");
+        Console.WriteLine($"Structure: {this.Structure}/{this.MaxStructure}, Shield: {this.Shield}/{this.MaxShield}");
         this.ViewWeapons();
     }
 
-    public double AverageDamages()
+    public void ViewWeapons()
     {
-        if (this._weapons.Count == 0)
+        foreach (Weapon weapon in this.Weapons)
         {
-            return 0.0;
-        }
-        double totalMinDamage = 0;
-        double totalMaxDamage = 0;
-        foreach (Weapon weapon in this._weapons)
-        {
-            totalMinDamage += weapon.MinDamage;
-            totalMaxDamage += weapon.MaxDamage;
-        }
-        return (totalMinDamage + totalMaxDamage) / (2 * this._weapons.Count);
-    }
-
-    public void TakeDamage(int damage)
-    {
-        if (damage <= this.CurrentShield)
-        {
-            this.CurrentShield -= damage;
-        }
-        else
-        {
-            int remainingDamage = damage - this.CurrentShield;
-            this.CurrentShield = 0;
-            this.CurrentStructure = Math.Max(0, this.CurrentStructure - remainingDamage);
+            Console.WriteLine($"Weapon: {weapon.Name} (Damage: {weapon.MinDamage}-{weapon.MaxDamage}, Type: {weapon.Type})");
         }
     }
 
-    public void RepairStructure(int repairPoints)
+    public double AverageDamages => this.Weapons.Count != 0 ? this.Weapons.Average(w => (w.MinDamage + w.MaxDamage) / 2) : 0;
+
+    public void RepairShield(double repair)
     {
-        this.CurrentStructure = Math.Min(this.MaxStructure, this.CurrentStructure + repairPoints);
+        this.Shield = Math.Min(this.MaxShield, this.Shield + repair);
     }
 
-    public void RepairShield(int repairPoints)
+    public static Spaceship Default()
     {
-        this.CurrentShield = Math.Min(this.MaxShield, this.CurrentShield + repairPoints);
+        return new ViperMKII();
     }
 }

@@ -9,8 +9,6 @@ public interface ISpaceship
     int MaxWeapons { get; }
     List<Weapon> Weapons { get; }
     double AverageDamages { get; }
-    double CurrentStructure { get; set; }
-    double CurrentShield { get; set; }
     bool BelongsPlayer { get; }
     void TakeDamages(double damages);
     void RepairShield(double repair);
