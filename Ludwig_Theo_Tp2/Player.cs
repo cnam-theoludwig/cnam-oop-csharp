@@ -1,6 +1,6 @@
 namespace Ludwig_Theo_Tp2;
 
-public class Player
+public class Player : IPlayer
 {
     private string FirstName { get; }
     private string LastName { get; }
@@ -12,14 +12,14 @@ public class Player
             return $"{this.FirstName} {this.LastName}";
         }
     }
-    public Spaceship Spaceship { get; }
+    public Spaceship BattleShip { get; set; }
 
     public Player(string firstName, string lastName, string alias)
     {
         this.FirstName = Player.FormatName(firstName);
         this.LastName = Player.FormatName(lastName);
         this.Alias = alias;
-        this.Spaceship = Spaceship.Default();
+        this.BattleShip = Spaceship.Default();
     }
 
     private static string FormatName(string name)

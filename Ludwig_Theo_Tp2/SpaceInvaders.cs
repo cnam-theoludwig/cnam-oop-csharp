@@ -25,7 +25,7 @@ public class SpaceInvaders
         {
             Console.WriteLine(player);
             Console.WriteLine("Spaceship:");
-            player.Spaceship.ViewShip();
+            player.BattleShip.ViewShip();
             Console.WriteLine();
         }
     }
@@ -33,7 +33,7 @@ public class SpaceInvaders
     private Weapon AddWeaponToPlayer(Player player)
     {
         Weapon weapon = this._armory.GetRandomWeapon();
-        player.Spaceship.AddWeapon(weapon);
+        player.BattleShip.AddWeapon(weapon);
         return weapon;
     }
 
@@ -57,9 +57,9 @@ public class SpaceInvaders
         game.ViewGame();
 
         Player player2 = game._players[1];
-        while (!player2.Spaceship.IsDestroyed)
+        while (!player2.BattleShip.IsDestroyed)
         {
-            player2.Spaceship.ShootTarget(player.Spaceship);
+            player2.BattleShip.ShootTarget(player.BattleShip);
             game.ViewGame();
         }
     }
